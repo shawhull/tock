@@ -267,8 +267,7 @@ pub unsafe fn setup_board<I: nrf52::interrupt_service::InterruptService>(
     // Create the debugger object that handles calls to `debug!()`.
     components::debug_writer::DebugWriterComponent::new(uart_mux).finalize(());
 
-    let ble_radio =
-        BLEComponent::new(board_kernel, &nrf52::ble_radio::RADIO, mux_alarm).finalize(());
+    let ble_radio = BLEComponent::new(board_kernel, mux_alarm).finalize(());
 
     let ieee802154_radio = if ieee802154 {
         let (radio, _) = Ieee802154Component::new(

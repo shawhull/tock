@@ -6,8 +6,6 @@
 //! let ble_radio = BLEComponent::new(board_kernel, &nrf52::ble_radio::RADIO, mux_alarm).finalize();
 //! ```
 
-#![allow(dead_code)] // Components are intended to be conditionally included
-
 use capsules;
 use capsules::virtual_alarm::VirtualMuxAlarm;
 
@@ -22,19 +20,16 @@ use kernel::{create_capability, static_init};
 
 pub struct BLEComponent {
     board_kernel: &'static kernel::Kernel,
-    radio: &'static nrf52::ble_radio::Radio,
     mux_alarm: &'static capsules::virtual_alarm::MuxAlarm<'static, nrf52::rtc::Rtc<'static>>,
 }
 
 impl BLEComponent {
     pub fn new(
         board_kernel: &'static kernel::Kernel,
-        radio: &'static nrf52::ble_radio::Radio,
         mux_alarm: &'static capsules::virtual_alarm::MuxAlarm<'static, nrf52::rtc::Rtc>,
     ) -> BLEComponent {
         BLEComponent {
             board_kernel: board_kernel,
-            radio: radio,
             mux_alarm: mux_alarm,
         }
     }
