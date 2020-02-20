@@ -8,7 +8,6 @@
 
 mod interrupts;
 
-pub mod aes;
 pub mod chip;
 pub mod gpio;
 pub mod plic;
